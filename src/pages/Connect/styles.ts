@@ -5,5 +5,7 @@ export const ConnectStyles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: Colors.green,
+        justifyContent: 'center',
+        alignItems: 'center',
     }
 })
