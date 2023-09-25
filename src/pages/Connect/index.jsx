@@ -9,13 +9,24 @@ import { Keys } from '../../routes/keys';
 
 export default function Connect() {
 
-    const navigation = useNavigation<any>();
+    const navigation = useNavigation();
 
-    useEffect(() => { }, []);
+    function simulateSplashTime() {
+        setTimeout(() => {
+            navigation.reset({
+                index: 0,
+                routes: [{ name: Keys.signin }]
+            })
+        }, 3000)
+    }
+
+    useEffect(() => {
+        simulateSplashTime();
+    }, []);
 
     return (
         <View style={ConnectStyles.container}>
-            <StatusBar barStyle={'light-content'} backgroundColor={Colors.green} />
+            <StatusBar barStyle={'light-content'} backgroundColor={Colors.limeGreen} />
             <Logo
                 logo_with={'100%'}
                 logo_height={'60%'}

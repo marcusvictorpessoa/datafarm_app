@@ -4,7 +4,7 @@ import { Colors } from "../../themes/colors";
 export const ConnectStyles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.limeGreen,
         justifyContent: 'center',
         alignItems: 'center',
     }
