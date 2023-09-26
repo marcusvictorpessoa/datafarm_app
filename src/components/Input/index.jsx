@@ -25,7 +25,7 @@ export default function Input({...props}) {
           style={InputStyles.iconWrapper}
           onPress={() => setSecureInput(!secureInput)}>
           <Icon
-            name={secureInput ? 'eye-off' : 'eye'}
+            name={secureInput ? 'eye' : 'eye-off'}
             size={30}
             color={Colors.lightGray}
             style={InputStyles.rightIcon}
