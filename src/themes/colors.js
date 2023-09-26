@@ -11,5 +11,6 @@ export const Colors = {
     feldgrau: '#46515b',
     jet: '#353535',
     deepSaffron: '#fda633',
-    alabaster: '#eaf1e8'
+    alabaster: '#eaf1e8',
+    paradisePink: '#e84d5b'
 }

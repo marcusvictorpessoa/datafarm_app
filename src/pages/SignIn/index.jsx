@@ -5,9 +5,22 @@ import {Colors} from '../../themes/colors';
 import Strings from '../../strings';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
-import Icon from 'react-native-vector-icons/Ionicons';
+import {useState} from 'react';
+import useSignInForm from '../../hooks/useSignInForm';
 
 export default function SignIn() {
+  const [loading, setLoading] = useState(false);
+
+  const {
+    email,
+    pwd,
+    emailError,
+    pwdError,
+    isSubmitDisabled,
+    onChangedEmail,
+    onChangedPwd,
+  } = useSignInForm();
+
   return (
     <View style={SignInStyles.container}>
       <ScrollView>
@@ -26,11 +39,33 @@ export default function SignIn() {
           <Text style={SignInStyles.login}>{Strings.login}</Text>
           <Text style={SignInStyles.info}>{Strings.accessTheApp}</Text>
           <Text style={SignInStyles.label}>{Strings.email}</Text>
-          <Input type="email" autoCapitalize="none" />
+          <Input
+            placeholder={Strings.emailPlaceholder}
+            type="email"
+            autoCapitalize="none"
+            isPwdInput={false}
+            value={email}
+            onChangeText={onChangedEmail}
+            errorMsg={emailError}
+            editable={!loading}
+          />
           <Text style={SignInStyles.label}>{Strings.password}</Text>
-          <Input secureTextEntry autoCapitalize="none" isRightIcon={true} >
-          </Input>
-          <Button txt={Strings.signin} mt={40} />
+          <Input
+            isPwdInput={true}
+            placeholder={Strings.passwordPlaceholder}
+            autoCapitalize="none"
+            value={pwd}
+            onChangeText={onChangedPwd}
+            errorMsg={pwdError}
+            editable={!loading}
+          />
+          <Button
+            onPress={() => setLoading(true)}
+            loading={loading}
+            disabled={isSubmitDisabled || loading}
+            txt={Strings.signin}
+            mt={40}
+          />
         </View>
       </ScrollView>
     </View>
