@@ -7,10 +7,9 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 import {useState} from 'react';
 import useSignInForm from '../../hooks/useSignInForm';
+import useSignInRequest from '../../hooks/useSignInRequest';
 
 export default function SignIn() {
-  const [loading, setLoading] = useState(false);
-
   const {
     email,
     pwd,
@@ -20,6 +19,7 @@ export default function SignIn() {
     onChangedEmail,
     onChangedPwd,
   } = useSignInForm();
+  const {loading, handleLogin} = useSignInRequest();
 
   return (
     <View style={SignInStyles.container}>
@@ -60,7 +60,7 @@ export default function SignIn() {
             editable={!loading}
           />
           <Button
-            onPress={() => setLoading(true)}
+            onPress={() => handleLogin(email, pwd, 372)}
             loading={loading}
             disabled={isSubmitDisabled || loading}
             txt={Strings.signin}
