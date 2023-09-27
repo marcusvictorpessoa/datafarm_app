@@ -3,5 +3,6 @@ export const Keys = {
     signin: 'signin',
     stop_record: 'stop_record',
     stopping_places: 'stopping_places',
-    synchronize: 'synchronize'
+    synchronize: 'synchronize',
+    tab_nav: 'tab_nav'
 }

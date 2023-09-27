@@ -2,9 +2,12 @@ import {useState} from 'react';
 import {loginRequest} from '../../services/requests';
 import {Endpoints} from '../../services/endpoints';
 import {Alert} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import {Keys} from '../../routes/keys';
 
 export default function useSignInRequest() {
   const [loading, setLoading] = useState(false);
+  const navigation = useNavigation();
 
   async function handleLogin(email, pwd, partnerId) {
     setLoading(true);
@@ -14,7 +17,10 @@ export default function useSignInRequest() {
         senha: pwd,
         idPartner: partnerId,
       });
-      console.log(data);
+      navigation.reset({
+        index: 0,
+        routes: [{name: Keys.tab_nav}],
+      });
     } catch (error) {
       console.log(error);
       Alert.alert('DataFarm', 'Verifique suas credenciais!', [

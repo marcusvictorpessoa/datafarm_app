@@ -8,6 +8,9 @@ const Strings = {
   signin: 'ENTRAR',
   thisFieldIsRequired: 'Este campo é obrigatório',
   enterAValidEmailAddress: 'Digite um e-mail válido',
+  titleScreenStopRecord: 'Registro de parada',
+  titleScreenSynchronize: 'Sincronizar dados',
+  titleScreenStoppingPlaces: 'Paradas'
 };
 
 export default Strings;
