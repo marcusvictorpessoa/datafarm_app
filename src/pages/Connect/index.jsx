@@ -6,10 +6,10 @@ import {useEffect} from 'react';
 import useConnect from '../../hooks/useConnect';
 
 export default function Connect() {
-  const {simulateSplashTime} = useConnect();
+  const {initApp} = useConnect();
 
   useEffect(() => {
-    simulateSplashTime();
+    initApp();
   }, []);
 
   return (

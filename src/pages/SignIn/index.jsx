@@ -65,6 +65,7 @@ export default function SignIn() {
             disabled={isSubmitDisabled || loading}
             txt={Strings.signin}
             mt={40}
+            w={'100%'}
           />
         </View>
       </ScrollView>

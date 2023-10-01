@@ -10,7 +10,14 @@ const Strings = {
   enterAValidEmailAddress: 'Digite um e-mail válido',
   titleScreenStopRecord: 'Registro de parada',
   titleScreenSynchronize: 'Sincronizar dados',
-  titleScreenStoppingPlaces: 'Paradas'
+  titleScreenStoppingPlaces: 'Paradas',
+  save: 'SALVAR',
+  minutes: 'MIN',
+  equipment: 'Equipamento',
+  farm: 'Fazenda',
+  field: 'Talhão',
+  reason: 'Motivo da parada',
+  note: 'Nota da parada',
 };
 
 export default Strings;

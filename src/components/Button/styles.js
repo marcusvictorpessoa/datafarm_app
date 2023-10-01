@@ -1,11 +1,11 @@
 import {StyleSheet} from 'react-native';
 import {Colors} from '../../themes/colors';
 
-export const ButtonStyles = mt =>
+export const ButtonStyles = (mt, w) =>
   StyleSheet.create({
     button: {
       backgroundColor: Colors.yellowGreen,
-      width: '100%',
+      width: w,
       height: 50,
       alignItems: 'center',
       justifyContent: 'center',

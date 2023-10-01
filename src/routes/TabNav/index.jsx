@@ -9,6 +9,7 @@ import {Colors} from '../../themes/colors';
 import Strings from '../../strings';
 import {Alert, TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import {clearToken} from '../../utils/token';
 
 const Tab = createBottomTabNavigator();
 
@@ -31,11 +32,13 @@ export default function TabNav() {
         },
         {
           text: 'sim',
-          onPress: () =>
+          onPress: async () => {
+            await clearToken();
             navigation.reset({
               index: 0,
               routes: [{name: Keys.signin}],
-            }),
+            });
+          },
         },
       ],
       {

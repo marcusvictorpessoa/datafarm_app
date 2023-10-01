@@ -6,7 +6,7 @@ export default function Button({...props}) {
   return (
     <TouchableOpacity
       {...props}
-      style={[ButtonStyles(props.mt).button, props.disabled && {opacity: 0.7}]}>
+      style={[ButtonStyles(props.mt, props.w).button, props.disabled && {opacity: 0.7}]}>
       {props.loading ? (
         <ActivityIndicator size="large" color={Colors.white} />
       ) : (
