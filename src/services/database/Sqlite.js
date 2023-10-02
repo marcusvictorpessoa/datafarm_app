@@ -1,4 +1,6 @@
-import {openDatabase} from 'react-native-sqlite-storage';
+import {openDatabase, enablePromise} from 'react-native-sqlite-storage';
+
+enablePromise(true);
 
 export default async function getDatabase() {
   const localDatabase = await openDatabase({

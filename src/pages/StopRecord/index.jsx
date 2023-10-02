@@ -12,11 +12,11 @@ import FontAwesome5 from 'react-native-vector-icons/dist/FontAwesome5';
 import {Colors} from '../../themes/colors';
 import NoteInput from '../../components/NoteInput';
 import useStopRecordForm from '../../hooks/useStopRecordForm';
-import {create} from '../../services/database/querys';
 
 export default function StopRecord() {
   const {loading, getResources} = useStopRecordRequests();
   const {
+    loadingForm,
     equipments,
     farms,
     fields,
@@ -36,6 +36,7 @@ export default function StopRecord() {
     minusMinutes,
     changeNote,
     isSaveBtnDisable,
+    submitForm,
   } = useStopRecordForm();
 
   async function setResources() {
@@ -119,9 +120,9 @@ export default function StopRecord() {
           handleMinus={minusMinutes}
         />
         <Button
-          onPress={() => {}}
-          loading={false}
-          disabled={isSaveBtnDisable} // here using the form component hook
+          onPress={() => submitForm()}
+          loading={loadingForm}
+          disabled={isSaveBtnDisable || loadingForm}
           txt={Strings.save}
           mt={0}
           w={150}

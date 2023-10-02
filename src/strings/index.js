@@ -22,6 +22,10 @@ const Strings = {
   serialNumberPlaceholder: '1CQS690ACK0125217',
   farmPlaceholder: 'Fazenda Modelo',
   fieldPlaceholder: 'TH 01',
+  selectFarm: 'Selecione uma fazenda',
+  filterPlaceholder: 'Localizar registros',
+  RegistersNotFound: 'Nenhum registro encontrado',
+  sync: 'Sincronizar',
 };
 
 export default Strings;

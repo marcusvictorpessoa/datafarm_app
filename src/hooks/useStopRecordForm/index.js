@@ -1,10 +1,20 @@
 import {useEffect, useState} from 'react';
+import {insertData} from '../../services/database/querys';
+import 'react-native-get-random-values';
+import {v4 as uuid4} from 'uuid';
+import Geolocation from '@react-native-community/geolocation';
 
 export default function useStopRecordForm() {
+  const [loadingForm, setLoadingForm] = useState(false);
   const [equipments, setEquipments] = useState([]);
   const [farms, setFarms] = useState([]);
   const [fields, setFields] = useState([]);
   const [reasons, setReasons] = useState([]);
+
+  const [location, setLocation] = useState({
+    latitude: 0,
+    longitude: 0,
+  });
 
   const [equipmentSelected, setEquipmentSelected] = useState({
     id: 0,
@@ -46,6 +56,19 @@ export default function useStopRecordForm() {
 
     return filteredValues;
   }
+
+  function getLocation() {
+    Geolocation.getCurrentPosition(info =>
+      setLocation({
+        latitude: info.coords?.latitude,
+        longitude: info.coords?.longitude,
+      }),
+    );
+  }
+
+  useEffect(() => {
+    getLocation();
+  }, []);
 
   useEffect(() => {
     const filteredEquipments = handleSelectedOption(
@@ -124,7 +147,68 @@ export default function useStopRecordForm() {
     setNote(txt);
   }
 
+  function clearFormFields() {
+    setEquipmentSelected({
+      id: 0,
+      name: '',
+      serialNumber: '',
+    });
+
+    setFarmSelected({
+      id: 0,
+      name: '',
+    });
+
+    setFieldSelected({
+      id: 0,
+      name: '',
+    });
+
+    setReasonSelected({
+      id: 0,
+      name: '',
+    });
+
+    setMinutes(10);
+
+    setNote(null);
+
+    setLocation({
+      latitude: 0,
+      longitude: 0,
+    });
+  }
+
+  async function submitForm() {
+    setLoadingForm(true);
+    try {
+      const form = {
+        uuid: uuid4(),
+        note: note,
+        idFarm: farmSelected?.id,
+        idField: fieldSelected?.id,
+        idReason: reasonSelected?.id,
+        idMachinery: equipmentSelected?.id,
+        minutes: minutes,
+        longitude: location?.longitude,
+        latitude: location?.latitude,
+        farmName: farmSelected?.name,
+        reasonName: reasonSelected?.name,
+        createdAt: new Date().toString(),
+      };
+
+      await insertData(form);
+
+      clearFormFields();
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoadingForm(false);
+    }
+  }
+
   return {
+    loadingForm,
     equipments,
     farms,
     fields,
@@ -144,5 +228,6 @@ export default function useStopRecordForm() {
     minusMinutes,
     changeNote,
     isSaveBtnDisable,
+    submitForm,
   };
 }

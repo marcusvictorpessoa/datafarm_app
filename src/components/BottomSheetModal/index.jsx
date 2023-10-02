@@ -76,7 +76,7 @@ export default function BottomSheetModal({
               <ScrollView style={BottomSheetModalStyles.optionsContainer}>
                 {title === Strings.field && options === undefined && (
                   <Text style={BottomSheetModalStyles.selectFarmTxt}>
-                    Selecione uma fazenda
+                    {Strings.selectFarm}
                   </Text>
                 )}
                 {options?.map(option => {
