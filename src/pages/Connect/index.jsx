@@ -4,11 +4,13 @@ import {Colors} from '../../themes/colors';
 import Logo from '../../components/Logo';
 import {useEffect} from 'react';
 import useConnect from '../../hooks/useConnect';
+import SplashScreen from 'react-native-splash-screen';
 
 export default function Connect() {
   const {initApp} = useConnect();
 
   useEffect(() => {
+    SplashScreen.hide();
     initApp();
   }, []);
 

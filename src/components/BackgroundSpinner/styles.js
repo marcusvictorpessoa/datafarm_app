@@ -9,7 +9,7 @@ export const BackgroundSpinnerStyles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: Colors.black,
-    opacity: 0.5,
+    opacity: 0.3,
     zIndex: 5,
   },
 });

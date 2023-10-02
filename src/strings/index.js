@@ -18,6 +18,10 @@ const Strings = {
   field: 'Talhão',
   reason: 'Motivo da parada',
   note: 'Nota da parada',
+  equipmentPlaceholder: 'TR 6170J',
+  serialNumberPlaceholder: '1CQS690ACK0125217',
+  farmPlaceholder: 'Fazenda Modelo',
+  fieldPlaceholder: 'TH 01',
 };
 
 export default Strings;

@@ -21,4 +21,7 @@ export const ListOfReasonStyles = StyleSheet.create({
     fontSize: 17,
     marginLeft: 5,
   },
+  selectedReason: {
+    backgroundColor: Colors.alabaster,
+  },
 });

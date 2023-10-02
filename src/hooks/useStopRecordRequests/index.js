@@ -3,10 +3,11 @@ import useConnection from '../useConnection';
 import {resourcesRequest} from '../../services/requests';
 import {Endpoints} from '../../services/endpoints';
 import {getToken} from '../../utils/token';
+import {getResourcesOffline, storeResources} from '../../utils/helpers';
+import {Alert} from 'react-native';
 
 export default function useStopRecordRequests() {
   const [loading, setLoading] = useState(false);
-  const [resources, setResources] = useState({});
 
   const {getConnectionState} = useConnection();
 
@@ -15,8 +16,8 @@ export default function useStopRecordRequests() {
     try {
       const tkn = await getToken();
       const data = await resourcesRequest(Endpoints.resources, tkn);
-      //console.log(data.data.resources.reasons); <- change bellow for this
-      setResources(data.data);
+      storeResources(data?.data?.resources);
+      return data?.data?.resources;
     } catch (error) {
       throw new Error('falha ao buscar recursos da API');
     } finally {
@@ -27,6 +28,8 @@ export default function useStopRecordRequests() {
   async function getResourcesFromStorage() {
     setLoading(true);
     try {
+      const data = await getResourcesOffline();
+      return data;
     } catch (error) {
       throw new Error(
         'falha ao buscar recursos do armazenamento do dispositivo',
@@ -37,16 +40,30 @@ export default function useStopRecordRequests() {
   }
 
   async function getResources() {
-    if (await getConnectionState()) {
-      await getResourcesFromAPI();
-    } else {
-      await getResourcesFromStorage();
+    try {
+      if (await getConnectionState()) {
+        const data = await getResourcesFromAPI();
+        return data;
+      } else {
+        const data = await getResourcesFromStorage();
+        return data;
+      }
+    } catch (error) {
+      Alert.alert(
+        'DataFarm',
+        error?.message,
+        [
+          {
+            text: 'entendido',
+          },
+        ],
+        {cancelable: true},
+      );
     }
   }
 
   return {
     loading,
     getResources,
-    resources,
   };
 }

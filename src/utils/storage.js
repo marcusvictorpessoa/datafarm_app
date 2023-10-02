@@ -38,3 +38,30 @@ export async function clearString(key) {
     ]);
   }
 }
+
+export async function storeData(key, value) {
+  try {
+    const jsonValue = JSON.stringify(value);
+    const value_data = await AsyncStorage.setItem(key, jsonValue);
+    return value_data;
+  } catch (e) {
+    Alert.alert('Datafarm', 'Falha ao armazenar dados', [
+      {
+        text: 'entendido',
+      },
+    ]);
+  }
+}
+
+export async function getData(key) {
+  try {
+    const jsonValue = await AsyncStorage.getItem(key);
+    return jsonValue != null ? JSON.parse(jsonValue) : null;
+  } catch (e) {
+    Alert.alert('Datafarm', 'Falha ao ler dados do armazenamento', [
+      {
+        text: 'entendido',
+      },
+    ]);
+  }
+}

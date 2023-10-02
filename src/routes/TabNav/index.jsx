@@ -10,6 +10,7 @@ import Strings from '../../strings';
 import {Alert, TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {clearToken} from '../../utils/token';
+import {clearResources} from '../../utils/helpers';
 
 const Tab = createBottomTabNavigator();
 
@@ -34,6 +35,7 @@ export default function TabNav() {
           text: 'sim',
           onPress: async () => {
             await clearToken();
+            await clearResources();
             navigation.reset({
               index: 0,
               routes: [{name: Keys.signin}],
